@@ -9,11 +9,11 @@ import (
 func main() {
   email := flag.String("email", "test@example.com", "Pushover login email address")
   password := flag.String("password", "example", "Pushover login password")
-  deviceid := flag.String("device", "AAAZZZ", "Pushover device ID")
+  settings := flag.String("config", "settings.json", "Settings file")
   flag.Parse()
-  pc,err := client.CreateClient(*email, *password, *deviceid)
+  pc,err := client.CreateClient(*email, *password, *settings)
   if err != nil {
-    log.Println("Error is %s", err)
+    log.Printf("Error is %s\n", err)
   }
   for {
     m := <- pc.Messages
